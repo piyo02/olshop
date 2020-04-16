@@ -113,7 +113,7 @@ class Product_model extends MY_Model
    * @return static
    * @author madukubah
    */
-  public function products( $start = 0 , $limit = NULL )
+  public function products( $start = 0 , $limit = NULL, $category_id = NULL )
   {
     $this->select($this->table . '.*');
     $this->select('CONCAT( "'.base_url('uploads/product/').'", product.image ) AS image');
@@ -123,14 +123,17 @@ class Product_model extends MY_Model
       'category.id = product.category_id',
       'left'
     );
-      if (isset( $limit ))
-      {
-        $this->limit( $limit );
-      }
-      $this->offset( $start );
-      $this->order_by($this->table.'.id', 'asc');
-      return $this->fetch_data();
+    if (isset( $limit ))
+    {
+      $this->limit( $limit );
+    }
+    if (isset( $category_id ))
+    {
+      $this->where( 'category_id', $category_id );
+    }
+    $this->offset( $start );
+    $this->order_by($this->table.'.id', 'asc');
+    return $this->fetch_data();
   }
-
 }
 ?>

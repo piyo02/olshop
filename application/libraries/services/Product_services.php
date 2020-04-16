@@ -50,6 +50,10 @@ class Product_services
                       'type' => 'hidden',
                       'label' => "gambar",
                     ),
+                    "price" => array(
+                      'type' => 'text',
+                      'label' => "Harga",
+                    ),
                     "image" => array(
                       'type' => 'file',
                       'label' => "Foto",

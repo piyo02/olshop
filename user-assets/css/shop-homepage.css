@@ -1,0 +1,58 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+ @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+ @import url('https://fonts.googleapis.com/css?family=Abel');
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+body {
+  padding-top: 72px;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.btn-name {
+  border-radius: 20px;
+  background-color: rgba(241, 241, 241, 0.246);
+}
+.card-name{
+  border-radius: 10px;
+  background: linear-gradient(#dE685E, #EE786E);
+}
+
+.navbar {
+  background-color: #33658A;
+}
+.navbar a {
+  font-family: 'Ubuntu', sans-serif;
+}
+.navbar-brand {
+  font-size: 2rem;
+}
+
+
+.list-group-item {
+  color: #395B50;
+  font-weight: 500;
+}
+.list-group-item:hover {
+  color: rgb(49, 79, 69);
+  font-weight: 700;
+}
+
+#product a {
+  color: #758E4F;
+}
+#product a:hover {
+  color: rgb(96, 120, 61);
+  font-weight: 500;
+}
+
+footer {
+  background-color: #33658A;
+}

@@ -45,6 +45,11 @@ class Product extends Owner_Controller {
 					'label' => "Nama Produk",
 					'value' => "",
 				),
+				"price" => array(
+					'type' => 'text',
+					'label' => "Harga",
+					'value' => "",
+				),
 				"category_id" => array(
 					'type' => 'hidden',
 					'label' => "category_id",
@@ -89,6 +94,7 @@ class Product extends Owner_Controller {
         if ($this->form_validation->run() === TRUE )
         {
 			$data['name'] = $this->input->post( 'name' );
+			$data['price'] = $this->input->post( 'price' );
 			$data['category_id'] = $category_id;
 			$data['image'] = $this->upload_image( $category_id );
 			$data['description'] = $this->input->post( 'description' );
