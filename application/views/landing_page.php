@@ -21,9 +21,9 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Toko Alwan</a>
+      <a class="navbar-brand" href="<?= base_url() ?>">Toko Alwan</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -49,10 +49,28 @@
       <div class="col-lg-3">
 
         <h4 class="my-4">Kategori Produk</h4>
-        <div class="list-group">
-          <?php foreach ($categories as $key => $category) :?>
-            <a href="<?= base_url('home/category/' . $category->id) ?>" class="list-group-item"><?= $category->name?></a>
-          <?php endforeach?>
+        <div class="search">
+          <div class="form-group">
+            <?php echo form_open('home/index', ['method' => 'get']) ?>
+              <div class="row">
+                <div class="col-9">
+                  <?php
+                    $form = array(
+                      'name' => 'search',
+                      'id' => 'search',
+                      'class' => 'form-control',
+                      'options' => $list_categories,
+                      'selected' => $search
+                    );
+                    echo form_dropdown($form);
+                  ?>
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+              </div>
+          <?php echo form_close(); ?>
+          </div>
         </div>
 
       </div>
@@ -86,26 +104,32 @@
 
         <div class="row" id="product">
 
-          <?php foreach ($products as $key => $product) :?>
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#"><?= $product->name ?></a>
-                  </h4>
-                  <h5>Rp. <?= number_format($product->price) ?></h5>
-                  <p class="card-text"><?= $product->description ?></p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+          <?php if(count($products)):?>
+            <?php foreach ($products as $key => $product) :?>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href="#"><?= $product->name ?></a>
+                    </h4>
+                    <h5>Rp. <?= number_format($product->price) ?></h5>
+                    <p class="card-text"><?= $product->description ?></p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  </div>
                 </div>
               </div>
-            </div>
-          <?php endforeach?>            
-
+            <?php endforeach?>
+            <?php else: ?>
+              <div class="text-center col-12 mt-5 mb-5">
+                <h4>Produk Kosong!</h4>
+              </div>
+            <?php endif; ?>
         </div>
         <!-- /.row -->
+        <?php echo (isset($pagination_links)) ? $pagination_links : '';  ?>
 
       </div>
       <!-- /.col-lg-9 -->
@@ -124,8 +148,8 @@
             <div class="card shadow" style="border-radius: 10px">
               <div class="row">
                 <div class="col-4 p-3 card-name">
-                  <div class="mb-2 text-center">
-                    <img src="<?= base_url('user-assets/') . 'icon/logo.png'?>" alt="image" width="100px">
+                  <div class="mb-2 mt-3 text-center">
+                    <img src="<?= base_url('user-assets/') . 'icon/logo.png'?>" alt="image" width="80rem">
                   </div>
                   <div class="text-center">
                     <a href="#" class="btn btn-sm btn-name">Toko Alwan</a>
@@ -153,9 +177,9 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-4">
+  <footer class="py-4 bg-light">
     <div class="container">
-      <p class="m-0 text-center text-white">&copy; Toko Alwan</p>
+      <p class="m-0 text-center">&copy; Toko Alwan</p>
     </div>
     <!-- /.container -->
   </footer>
