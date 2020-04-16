@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Group_services
+class Product_services
 {
   function __construct(){
   }
@@ -9,18 +9,30 @@ class Group_services
   {
     return get_instance()->$var;
   }
+
+  public function list_categories() {
+    $this->load->model("category_model");
+
+    $categories = $this->category_model->categories()->result();
+    foreach ($categories as $key => $category) {
+      $list_categories[$category->id] = $category->name;
+    }
+    return $list_categories;
+  }
   
   public function get_table_config( $_page, $start_number = 1 )
   {
+    $list_categories = $this->list_categories();
       $table["header"] = array(
-        'name' => 'Nama Group',
+        'name' => 'Nama',
+        'image' => 'Foto',
         'description' => 'Deskripsi',
       );
       $table["number"] = $start_number;
       $table[ "action" ] = array(
               array(
                 "name" => 'Edit',
-                "type" => "modal_form",
+                "type" => "modal_form_multipart",
                 "modal_id" => "edit_",
                 "url" => site_url( $_page."edit/"),
                 "button_color" => "primary",
@@ -32,14 +44,27 @@ class Group_services
                     ),
                     "name" => array(
                         'type' => 'text',
-                        'label' => "Nama Group",
+                        'label' => "Nama Produk",
+                    ),
+                    "image_old" => array(
+                      'type' => 'hidden',
+                      'label' => "gambar",
+                    ),
+                    "image" => array(
+                      'type' => 'file',
+                      'label' => "Foto",
+                    ),
+                    "category_id" => array(
+                      'type' => 'select',
+                      'label' => "Kategori",
+                      'options' => $list_categories
                     ),
                     "description" => array(
                         'type' => 'textarea',
                         'label' => "Deskripsi",
                     ),
                 ),
-                "title" => "Group",
+                "title" => "Product",
                 "data_name" => "name",
               ),
               array(
@@ -54,8 +79,16 @@ class Group_services
                     'type' => 'hidden',
                     'label' => "id",
                   ),
+                  "image_old" => array(
+                    'type' => 'hidden',
+                    'label' => "gambar",
+                  ),
+                  "category_id" => array(
+                    'type' => 'hidden',
+                    'label' => "Kategori",
+                  ),
                 ),
-                "title" => "Group",
+                "title" => "Product",
                 "data_name" => "name",
               ),
     );

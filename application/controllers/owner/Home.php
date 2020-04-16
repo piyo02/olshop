@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends Admin_Controller {
+class Home extends Owner_Controller {
 	private $services = null;
     private $name = null;
     private $parent_page = 'admin';

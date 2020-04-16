@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Group_model extends MY_Model
+class Product_model extends MY_Model
 {
-  protected $table = "groups";
+  protected $table = "product";
 
   function __construct() {
       parent::__construct( $this->table );
-      parent::set_join_key( 'menu_id' );
   }
 
   /**
@@ -69,14 +68,6 @@ class Group_model extends MY_Model
    */
   public function delete( $data_param  )
   {
-    //foreign
-    //delete_foreign( $data_param. $models[]  )
-    if( !$this->delete_foreign( $data_param, ['menu_model'] ) )
-    {
-      $this->set_error("gagal");//('group_delete_unsuccessful');
-      return FALSE;
-    }
-    //foreign
     $this->db->trans_begin();
 
     $this->db->delete($this->table, $data_param );
@@ -101,7 +92,7 @@ class Group_model extends MY_Model
    * @return static
    * @author madukubah
    */
-  public function group( $id = NULL  )
+  public function product( $id = NULL  )
   {
       if (isset($id))
       {
@@ -111,19 +102,27 @@ class Group_model extends MY_Model
       $this->limit(1);
       $this->order_by($this->table.'.id', 'desc');
 
-      $this->groups(  );
+      $this->products(  );
 
       return $this;
   }
   /**
-   * groups
+   * products
    *
    *
    * @return static
    * @author madukubah
    */
-  public function groups( $start = 0 , $limit = NULL )
+  public function products( $start = 0 , $limit = NULL )
   {
+    $this->select($this->table . '.*');
+    $this->select('CONCAT( "'.base_url('uploads/product/').'", product.image ) AS image');
+    $this->select('product.image as image_old');
+    $this->join(
+      'category',
+      'category.id = product.category_id',
+      'left'
+    );
       if (isset( $limit ))
       {
         $this->limit( $limit );

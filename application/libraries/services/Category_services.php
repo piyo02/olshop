@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Group_services
+class Category_services
 {
   function __construct(){
   }
@@ -12,52 +12,59 @@ class Group_services
   
   public function get_table_config( $_page, $start_number = 1 )
   {
-      $table["header"] = array(
-        'name' => 'Nama Group',
-        'description' => 'Deskripsi',
-      );
-      $table["number"] = $start_number;
-      $table[ "action" ] = array(
-              array(
-                "name" => 'Edit',
-                "type" => "modal_form",
-                "modal_id" => "edit_",
-                "url" => site_url( $_page."edit/"),
-                "button_color" => "primary",
-                "param" => "id",
-                "form_data" => array(
-                    "id" => array(
-                        'type' => 'hidden',
-                        'label' => "id",
-                    ),
-                    "name" => array(
-                        'type' => 'text',
-                        'label' => "Nama Group",
-                    ),
-                    "description" => array(
-                        'type' => 'textarea',
-                        'label' => "Deskripsi",
-                    ),
-                ),
-                "title" => "Group",
-                "data_name" => "name",
-              ),
-              array(
-                "name" => 'X',
-                "type" => "modal_delete",
-                "modal_id" => "delete_",
-                "url" => site_url( $_page."delete/"),
-                "button_color" => "danger",
-                "param" => "id",
-                "form_data" => array(
-                  "id" => array(
-                    'type' => 'hidden',
-                    'label' => "id",
-                  ),
-                ),
-                "title" => "Group",
-                "data_name" => "name",
-              ),
+    $table["header"] = array(
+      'name' => 'Kategori',
+      'description' => 'Deskripsi',
+    );
+    $table["number"] = $start_number;
+    $table[ "action" ] = array(
+      array(
+        "name" => "Tambah",
+        "type" => "link",
+        "url" => site_url( "owner/product/index/" ),
+        "button_color" => "success",
+        "param" => "id",
+      ),
+      array(
+        "name" => 'Edit',
+        "type" => "modal_form",
+        "modal_id" => "edit_",
+        "url" => site_url( $_page."edit/"),
+        "button_color" => "primary",
+        "param" => "id",
+        "form_data" => array(
+            "id" => array(
+                'type' => 'hidden',
+                'label' => "id",
+            ),
+            "name" => array(
+                'type' => 'text',
+                'label' => "Nama Group",
+            ),
+            "description" => array(
+                'type' => 'textarea',
+                'label' => "Deskripsi",
+            ),
+        ),
+        "title" => "Group",
+        "data_name" => "name",
+      ),
+      array(
+        "name" => 'X',
+        "type" => "modal_delete",
+        "modal_id" => "delete_",
+        "url" => site_url( $_page."delete/"),
+        "button_color" => "danger",
+        "param" => "id",
+        "form_data" => array(
+          "id" => array(
+            'type' => 'hidden',
+            'label' => "id",
+          ),
+        ),
+        "title" => "Group",
+        "data_name" => "name",
+      ),
     );
     return $table;
   }
