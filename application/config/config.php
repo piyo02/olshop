@@ -23,8 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/olshop/';
-// $config['base_url'] = 'https://olshop.akar-z.com/';
+// $config['base_url'] = 'http://localhost/olshop/';
+$config['base_url'] = 'https://olshop.akar-z.com/';
 
 /*
 |--------------------------------------------------------------------------
