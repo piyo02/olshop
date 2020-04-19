@@ -15,6 +15,8 @@
 
   <!-- Custom styles for this template -->
   <link href="<?= base_url('user-assets/') ?>css/shop-homepage.css" rel="stylesheet">
+  <link href="<?= base_url('user-assets/') ?>css/slick.css" rel="stylesheet">
+  <link href="<?= base_url('user-assets/') ?>css/slick-theme.css" rel="stylesheet">
 
 </head>
 
@@ -42,47 +44,16 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+    <div class="container">
+  
 
-    <div class="row">
-
-      <div class="col-lg-3">
-
-        <h4 class="my-4">Kategori Produk</h4>
-        <div class="search">
-          <div class="form-group">
-            <?php echo form_open('home/index', ['method' => 'get']) ?>
-              <div class="row">
-                <div class="col-9">
-                  <?php
-                    $form = array(
-                      'name' => 'search',
-                      'id' => 'search',
-                      'class' => 'form-control',
-                      'options' => $list_categories,
-                      'selected' => $search
-                    );
-                    echo form_dropdown($form);
-                  ?>
-                </div>
-                <div class="col-3">
-                  <button type="submit" class="btn btn-primary">Filter</button>
-                </div>
-              </div>
-          <?php echo form_close(); ?>
-          </div>
-        </div>
-
-      </div>
-      <!-- /.col-lg-3 -->
-
+    <div class="row justify-content-center">
       <div class="col-lg-9">
-
+        
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
@@ -102,35 +73,38 @@
           </a>
         </div>
 
-        <div class="row" id="product">
+        <?php $i = 0; foreach ($list_products as $key => $products) : ?>
+          <div class="col-12 mt-5">
+            <h3 style="color: #16817a;"><?= $key ?></h3>
+          </div>
 
-          <?php if(count($products)):?>
-            <?php foreach ($products as $key => $product) :?>
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#"><?= $product->name ?></a>
-                    </h4>
-                    <h5>Rp. <?= number_format($product->price) ?></h5>
-                    <p class="card-text"><?= $product->description ?></p>
+          <div id="<?= $i ?>">
+            <?php if(count($products)):?>
+              <?php foreach ($products as $key => $product) :?>
+                  <div class="item product p-4">
+                    <div class="card h-100 shadow">
+                      <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <a href="#"><?= $product->name ?></a>
+                        </h4>
+                        <h5>Rp. <?= number_format($product->price) ?></h5>
+                        <p class="card-text"><?= $product->description ?></p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                      </div>
+                    </div>
                   </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-            <?php endforeach?>
+              <?php endforeach?>
             <?php else: ?>
-              <div class="text-center col-12 mt-5 mb-5">
-                <h4>Produk Kosong!</h4>
+              <div class="text-center col-12 mt-2 mb-5">
+                <h4 style="color: #c70039;">Produk Kosong!</h4>
               </div>
             <?php endif; ?>
-        </div>
-        <!-- /.row -->
-        <?php echo (isset($pagination_links)) ? $pagination_links : '';  ?>
-
+          </div>
+        <?php $i++; endforeach; ?>
+        <span id="countProduct" data-value="<?= count($list_products); ?>"></span>
       </div>
       <!-- /.col-lg-9 -->
 
@@ -187,7 +161,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<?= base_url('user-assets/') ?>vendor/jquery/jquery.min.js"></script>
   <script src="<?= base_url('user-assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- <script src="<?= base_url('user-assets/') ?>vendor/main.js"></script> -->
+  <script src="<?= base_url('user-assets/') ?>vendor/slick.min.js"></script>
+  <script src="<?= base_url('user-assets/') ?>vendor/main.js"></script>
 
 </body>
 

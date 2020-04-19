@@ -45,10 +45,10 @@ a:hover {
   font-weight: 700;
 }
 
-#product a {
+#products a {
   color: #758E4F;
 }
-#product a:hover {
+#products a:hover {
   color: rgb(96, 120, 61);
   font-weight: 500;
 }
