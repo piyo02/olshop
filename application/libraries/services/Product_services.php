@@ -26,6 +26,7 @@ class Product_services
       $table["header"] = array(
         'name' => 'Nama',
         'image' => 'Foto',
+        'price' => 'Harga',
         'description' => 'Deskripsi',
       );
       $table["number"] = $start_number;
