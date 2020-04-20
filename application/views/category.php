@@ -91,10 +91,10 @@
           <?php endforeach?>
         </div>
 
-        <div id="products" class="mt-5">
+        <div class="row mt-5">
           <?php if(count($products)):?>
             <?php foreach ($products as $key => $product) :?>
-                <div class="item product p-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 p-4">
                   <div class="card h-100 shadow">
                     <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
                     <div class="card-body">
@@ -116,10 +116,12 @@
             </div>
           <?php endif; ?>
         </div>
+        <?php echo (isset($pagination_links)) ? $pagination_links : '';  ?>
       </div>
       <!-- /.col-lg-9 -->
-
+      
     </div>
+    
     <!-- /.row -->
     <div class="row mb-5 mt-3" id="order">
       <div class="container ml-2">
