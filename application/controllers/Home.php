@@ -16,13 +16,12 @@ class Home extends Public_Controller {
 	
 	public function index()
 	{
+		$products = $this->product_model->get_random_product()->result();
 		$categories = $this->category_model->categories()->result();
-		foreach ($categories as $key => $category) {
-			$list_products[$category->name] = $this->product_model->products( 0, NULL, $category->id )->result();
-		}
 
 		$data = [
-			'list_products' => $list_products,
+			'products' => $products,
+			'categories' => $categories,
 		];
 		$this->load->view("landing_page", $data);
 	}

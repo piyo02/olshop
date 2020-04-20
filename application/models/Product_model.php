@@ -116,6 +116,7 @@ class Product_model extends MY_Model
   public function products( $start = 0 , $limit = NULL, $category_id = NULL )
   {
     $this->select($this->table . '.*');
+    $this->select('category.name AS category_name');
     $this->select('CONCAT( "'.base_url('uploads/product/').'", product.image ) AS image');
     $this->select('product.image as image_old');
     $this->join(
@@ -133,6 +134,21 @@ class Product_model extends MY_Model
     }
     $this->offset( $start );
     $this->order_by($this->table.'.id', 'asc');
+    return $this->fetch_data();
+  }
+
+  public function get_random_product(){
+    $this->select($this->table . '.*');
+    $this->select('category.name AS category_name');
+    $this->select('CONCAT( "'.base_url('uploads/product/').'", product.image ) AS image');
+    $this->select('product.image as image_old');
+    $this->join(
+      'category',
+      'category.id = product.category_id',
+      'left'
+    );
+    $this->limit(10);
+    $this->order_by('rand()');
     return $this->fetch_data();
   }
 }

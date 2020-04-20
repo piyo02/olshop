@@ -73,38 +73,49 @@
           </a>
         </div>
 
-        <?php $i = 0; foreach ($list_products as $key => $products) : ?>
-          <div class="col-12 mt-5">
-            <h3 style="color: #16817a;"><?= $key ?></h3>
-          </div>
+        <div class="col-12 text-center mt-5">
+          <h3 style="color: #16817a;">Kategori</h3>
+        </div>
+        <div class="row mt-2 mb-3">
+          <?php foreach ($categories as $key => $category) : ?>
+              <div class="col-lg-4 col-md-4 col-sm-12 p-3">
+                <div class="card h-100 shadow">
+                  <a href="<?= base_url('home/category/') . $category->id ?>"><img class="card-img-top" src="<?= base_url('user-assets/icon/') . $category->description ?>" alt=""></a>
+                  <div class="card-body">
+                    <h4 class="card-title text-center">
+                      <a href="<?= base_url('home/category/') . $category->id ?>" class="btn shadow"><?= $category->name ?></a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+          <?php endforeach?>
+        </div>
 
-          <div id="<?= $i ?>">
-            <?php if(count($products)):?>
-              <?php foreach ($products as $key => $product) :?>
-                  <div class="item product p-4">
-                    <div class="card h-100 shadow">
-                      <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
-                      <div class="card-body">
-                        <h4 class="card-title">
-                          <a href="#"><?= $product->name ?></a>
-                        </h4>
-                        <h5>Rp. <?= number_format($product->price) ?></h5>
-                        <p class="card-text"><?= $product->description ?></p>
-                      </div>
-                      <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                      </div>
+        <div id="products" class="mt-5">
+          <?php if(count($products)):?>
+            <?php foreach ($products as $key => $product) :?>
+                <div class="item product p-4">
+                  <div class="card h-100 shadow">
+                    <a href="#"><img class="card-img-top" src="<?= $product->image ?>" alt=""></a>
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <a href="#"><?= $product->name ?></a>
+                      </h4>
+                      <h5>Rp. <?= number_format($product->price) ?></h5>
+                      <p class="card-text"><?= $product->description ?></p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted"><?= $product->category_name ?></small>
                     </div>
                   </div>
-              <?php endforeach?>
-            <?php else: ?>
-              <div class="text-center col-12 mt-2 mb-5">
-                <h4 style="color: #c70039;">Produk Kosong!</h4>
-              </div>
-            <?php endif; ?>
-          </div>
-        <?php $i++; endforeach; ?>
-        <span id="countProduct" data-value="<?= count($list_products); ?>"></span>
+                </div>
+            <?php endforeach?>
+          <?php else: ?>
+            <div class="text-center col-12 mt-2 mb-5">
+              <h4 style="color: #c70039;">Produk Kosong!</h4>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
       <!-- /.col-lg-9 -->
 
