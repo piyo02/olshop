@@ -150,7 +150,7 @@
                       <img src="<?= base_url('user-assets/') . 'icon/whatsapp.png' ?>" alt="" width="20px">
                     </div>
                     <div class="col-8">
-                      <p>081234567890</p>
+                      <a href="tel: 081242016813">081242016813</a>
                     </div>
                   </div>
                 </div>
