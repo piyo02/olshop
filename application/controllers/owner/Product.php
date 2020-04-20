@@ -124,6 +124,7 @@ class Product extends Owner_Controller {
         if ($this->form_validation->run() === TRUE )
         {
 			$data['name'] = $this->input->post( 'name' );
+			$data['price'] = $this->input->post( 'price' );
 			$data['category_id'] = $category_id;
 			$data['description'] = $this->input->post( 'description' );
 			
